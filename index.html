@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dither</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="landing">
+  <div class="landing-inner">
+    <h1 class="landing-title">DITHER</h1>
+    <p class="landing-sub">generative gradient dithering</p>
+    <div class="card-grid">
+      <div class="card" data-tool="gradient">
+        <div class="card-icon">◈</div>
+        <div class="card-label">Gradient Generator</div>
+        <div class="card-desc">Ordered dithering with animated warp layers</div>
+      </div>
+      <div class="card disabled">
+        <div class="card-icon">?</div>
+        <div class="card-label">Coming Soon</div>
+        <div class="card-desc">More tools in development</div>
+      </div>
+      <div class="card disabled">
+        <div class="card-icon">?</div>
+        <div class="card-label">Coming Soon</div>
+        <div class="card-desc">More tools in development</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="app" style="display:none">
+  <header>
+    <button id="back-btn">← Back</button>
+    <h1 id="tool-title">GRADIENT GENERATOR</h1>
+    <div class="actions">
+      <button id="random-btn">RANDOMIZE</button>
+      <button id="dark-btn">DARK</button>
+      <button id="export-btn">EXPORT PNG</button>
+      <button id="export-video-btn">EXPORT VIDEO</button>
+    </div>
+  </header>
+  <main>
+    <div id="canvas-area"><div id="canvas-wrap"><canvas id="canvas"></canvas></div></div>
+    <div id="sidebar"></div>
+  </main>
+</div>
+<div id="export-dialog">
+  <div class="export-dialog-inner">
+    <div class="export-dialog-title">Export Video</div>
+    <div class="export-dialog-body">
+      <div class="export-field">
+        <label>Resolution</label>
+        <div class="export-res-row">
+          <input type="number" id="export-w" value="1920" min="1" max="7680">
+          <span class="export-res-x">&times;</span>
+          <input type="number" id="export-h" value="1080" min="1" max="4320">
+        </div>
+      </div>
+      <div class="export-field">
+        <label>Frame Rate (fps)</label>
+        <input type="number" id="export-fps" value="60" min="1" max="120">
+      </div>
+      <div class="export-field">
+        <label>Bitrate (Mbps)</label>
+        <input type="number" id="export-bitrate" value="50" min="1" max="500">
+      </div>
+    </div>
+    <div class="export-dialog-actions">
+      <button id="export-cancel-btn">Cancel</button>
+      <button id="export-start-btn">Export</button>
+    </div>
+  </div>
+</div>
+<div id="export-overlay"><div class="export-overlay-inner"><div class="export-overlay-text">Exporting video...</div><div class="export-overlay-progress">0%</div></div></div>
+<div id="err"></div>
+<div id="info">loading...</div>
+<script src="state.js"></script>
+<script src="config.js"></script>
+<script src="ui.js"></script>
+<script src="renderer-cpu.js"></script>
+<script src="renderer-webgl.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
