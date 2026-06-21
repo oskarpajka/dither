@@ -405,14 +405,20 @@ function runExport(cfg) {
     showErr('Video export requires canvas.captureStream support');
     return;
   }
-  var mime = 'video/webm;codecs=vp9';
-  if (!MediaRecorder.isTypeSupported(mime)) {
-    mime = 'video/webm;codecs=vp8';
+  var ext = 'webm';
+  var mime = 'video/mp4';
+  if (MediaRecorder.isTypeSupported(mime)) {
+    ext = 'mp4';
+  } else {
+    mime = 'video/webm;codecs=vp9';
     if (!MediaRecorder.isTypeSupported(mime)) {
-      mime = 'video/webm';
+      mime = 'video/webm;codecs=vp8';
       if (!MediaRecorder.isTypeSupported(mime)) {
-        showErr('Video export not supported in this browser');
-        return;
+        mime = 'video/webm';
+        if (!MediaRecorder.isTypeSupported(mime)) {
+          showErr('Video export not supported in this browser');
+          return;
+        }
       }
     }
   }
@@ -452,7 +458,7 @@ function runExport(cfg) {
     var blob = new Blob(chunks, { type: mime });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'dither.webm';
+    a.download = 'dither.' + ext;
     a.click();
     if (wasAnimOn) startAnim(true); else render();
   };
