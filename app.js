@@ -405,22 +405,23 @@ function runExport(cfg) {
     showErr('Video export requires canvas.captureStream support');
     return;
   }
-  var ext = 'webm';
-  var mime = 'video/mp4';
-  if (MediaRecorder.isTypeSupported(mime)) {
-    ext = 'mp4';
-  } else {
-    mime = 'video/webm;codecs=vp9';
-    if (!MediaRecorder.isTypeSupported(mime)) {
-      mime = 'video/webm;codecs=vp8';
-      if (!MediaRecorder.isTypeSupported(mime)) {
-        mime = 'video/webm';
-        if (!MediaRecorder.isTypeSupported(mime)) {
-          showErr('Video export not supported in this browser');
-          return;
-        }
-      }
+
+  function findMp4Mime() {
+    var candidates = [
+      'video/mp4;codecs=avc1.4d401e',
+      'video/mp4;codecs=avc1',
+      'video/mp4',
+    ];
+    for (var i = 0; i < candidates.length; i++) {
+      if (MediaRecorder.isTypeSupported(candidates[i])) return candidates[i];
     }
+    return null;
+  }
+
+  var mime = findMp4Mime();
+  if (!mime) {
+    showErr('MP4 export requires Chrome, Edge, or Safari 16.4+.');
+    return;
   }
 
   var s = window.state;
@@ -432,7 +433,6 @@ function runExport(cfg) {
   var wasMaxH = wrap.style.maxHeight;
   if (wasAnimOn) stopAnim();
 
-  // Override canvas size — remove DOM constraints so wrap is exactly cfg.w × cfg.h
   s.resW = cfg.w;
   s.resH = cfg.h;
   wrap.style.maxWidth = 'none';
@@ -455,10 +455,10 @@ function runExport(cfg) {
     wrap.style.maxHeight = wasMaxH;
     s.loopDuration.val = wasLoopDur;
     s.animOn = false;
-    var blob = new Blob(chunks, { type: mime });
+    var blob = new Blob(chunks, { type: 'video/mp4' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'dither.' + ext;
+    a.download = 'dither.mp4';
     a.click();
     if (wasAnimOn) startAnim(true); else render();
   };
