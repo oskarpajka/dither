@@ -16,6 +16,13 @@ window.state = {
   animFps:  { val: 60, min: 1, max: 60 },
   loopDuration: { val: 0, min: 0, max: 60 },
 
+  asciiCharset: 'standard',
+  asciiCellSize: { val: 4, min: 1, max: 10 },
+  asciiInvert: false,
+  asciiBgColor: '#000000',
+  asciiFgColor: '#ffffff',
+  asciiFps: 30,
+  asciiScaleMode: 'fit',
 };
 
 let _config = null;

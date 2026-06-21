@@ -17,10 +17,10 @@
         <div class="card-label">Gradient Generator</div>
         <div class="card-desc">Ordered dithering with animated warp layers</div>
       </div>
-      <div class="card disabled">
-        <div class="card-icon">?</div>
-        <div class="card-label">Coming Soon</div>
-        <div class="card-desc">More tools in development</div>
+      <div class="card" data-tool="video">
+        <div class="card-icon">#</div>
+        <div class="card-label">Video to ASCII</div>
+        <div class="card-desc">Convert any video into ASCII art</div>
       </div>
       <div class="card disabled">
         <div class="card-icon">?</div>
@@ -42,7 +42,17 @@
     </div>
   </header>
   <main>
-    <div id="canvas-area"><div id="canvas-wrap"><canvas id="canvas"></canvas></div></div>
+    <div id="canvas-area">
+      <div id="drop-zone">
+        <div class="drop-zone-inner">
+          <div class="drop-zone-icon">#</div>
+          <div class="drop-zone-text">Drop a video or click to upload</div>
+          <div class="drop-zone-hint">MP4, WebM, MOV supported</div>
+          <input type="file" id="video-file-input" accept="video/*" hidden>
+        </div>
+      </div>
+      <div id="canvas-wrap"><canvas id="canvas"></canvas></div>
+    </div>
     <div id="sidebar"></div>
   </main>
 </div>
@@ -76,11 +86,14 @@
 <div id="export-overlay"><div class="export-overlay-inner"><div class="export-overlay-text">Exporting video...</div><div class="export-overlay-progress">0%</div></div></div>
 <div id="err"></div>
 <div id="info">loading...</div>
+<video id="ascii-video" muted loop playsinline style="display:none"></video>
+<canvas id="ascii-offscreen" style="display:none"></canvas>
 <script src="state.js"></script>
 <script src="config.js"></script>
 <script src="ui.js"></script>
 <script src="renderer-cpu.js"></script>
 <script src="renderer-webgl.js"></script>
+<script src="renderer-ascii.js"></script>
 <script src="app.js"></script>
 
 </body>

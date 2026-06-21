@@ -587,6 +587,61 @@ input[type=number] { -moz-appearance: textfield; }
   border-radius: 3px;
 }
 
+/* Drop zone for video upload */
+#drop-zone {
+  display: none;
+  flex: 1;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px dashed var(--border);
+  margin: 16px;
+  transition: background .15s, border-color .15s;
+}
+
+#drop-zone.drag-over {
+  background: var(--chov);
+  border-color: var(--accent);
+}
+
+.drop-zone-inner {
+  text-align: center;
+  padding: 32px;
+}
+
+.drop-zone-icon {
+  font-size: 40px;
+  font-family: "SF Mono", Consolas, monospace;
+  color: var(--tint);
+  margin-bottom: 12px;
+}
+
+.drop-zone-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.drop-zone-hint {
+  font-size: 11px;
+  color: var(--tint);
+}
+
+/* ASCII controls */
+.ascii-select {
+  width: 100%;
+  font-size: 10px;
+  font-family: "SF Mono", Consolas, monospace;
+  background: var(--cbg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   main {
     flex-direction: column;
