@@ -3,11 +3,11 @@
 A generative gradient dithering tool that runs in the browser. Creates ordered-dither gradient patterns with animated warp layers.
 
 <p align="center">
-  <img src="screenshots/warm-tones.png" width="45%" alt="Warm tones dithering pattern">
-  <img src="screenshots/cool-teal.png" width="45%" alt="Cool teal dithering pattern">
+  <img src="screenshots/screenshot-1.png" width="45%" alt="Dither pattern 1">
+  <img src="screenshots/screenshot-2.png" width="45%" alt="Dither pattern 2">
   <br>
-  <img src="screenshots/rich-purple.png" width="45%" alt="Rich purple dithering pattern">
-  <img src="screenshots/earth.png" width="45%" alt="Earth tone dithering pattern">
+  <img src="screenshots/screenshot-3.png" width="45%" alt="Dither pattern 3">
+  <img src="screenshots/screenshot-4.png" width="45%" alt="Dither pattern 4">
 </p>
 
 ## [Try it live](https://oskarpajka.github.io/dither)
